@@ -5850,8 +5850,7 @@ func (s *CreateAutoScalingGroupInput) Validate() error {
 			}
 		}
 	}
-	if s.Tags != nil {
-		for i, v := range s.Tags {
+	for i, v := range s.Tags {
 			if v == nil {
 				continue
 			}
@@ -5859,7 +5858,6 @@ func (s *CreateAutoScalingGroupInput) Validate() error {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
 		}
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams

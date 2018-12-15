@@ -328,11 +328,9 @@ func Convert_autoscaling_HorizontalPodAutoscaler_To_v1_HorizontalPodAutoscaler(i
 	if len(otherMetrics) > 0 || len(in.Status.CurrentMetrics) > 0 || len(currentConditions) > 0 {
 		old := out.Annotations
 		out.Annotations = make(map[string]string, len(old)+3)
-		if old != nil {
-			for k, v := range old {
+		for k, v := range old {
 				out.Annotations[k] = v
 			}
-		}
 	}
 
 	if len(otherMetrics) > 0 {

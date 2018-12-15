@@ -76,11 +76,9 @@ func TestValidateArgs(t *testing.T) {
 	for _, test := range tests {
 		cmd := NewCmdRollingUpdate(f, genericclioptions.NewTestIOStreamsDiscard())
 
-		if test.flags != nil {
-			for key, val := range test.flags {
+		for key, val := range test.flags {
 				cmd.Flags().Set(key, val)
 			}
-		}
 		err := validateArguments(cmd, test.filenames, test.args)
 		if err != nil && !test.expectErr {
 			t.Errorf("%s: unexpected error: %v", test.testName, err)

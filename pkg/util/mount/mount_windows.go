@@ -320,11 +320,9 @@ func lockAndCheckSubPathWithoutSymlink(volumePath, subPath string) ([]uintptr, e
 
 // unlockPath unlock directories
 func unlockPath(fileHandles []uintptr) {
-	if fileHandles != nil {
-		for _, handle := range fileHandles {
+	for _, handle := range fileHandles {
 			syscall.CloseHandle(syscall.Handle(handle))
 		}
-	}
 }
 
 // lockPath locks a directory or symlink, return handle, exec "syscall.CloseHandle(handle)" to unlock the path
