@@ -131,13 +131,11 @@ func (pkg *goPackage) firstGoFile() string {
 		pkg.test.sources,
 	}
 	for _, sb := range goSrcs {
-		if sb.strs != nil {
-			for s := range sb.strs {
+		for s := range sb.strs {
 				if strings.HasSuffix(s, ".go") {
 					return s
 				}
 			}
-		}
 	}
 	return ""
 }
@@ -433,21 +431,15 @@ func (sb *platformStringsBuilder) build() rule.PlatformStrings {
 		}
 	}
 	sort.Strings(ps.Generic)
-	if ps.OS != nil {
-		for _, ss := range ps.OS {
+	for _, ss := range ps.OS {
 			sort.Strings(ss)
 		}
-	}
-	if ps.Arch != nil {
-		for _, ss := range ps.Arch {
+	for _, ss := range ps.Arch {
 			sort.Strings(ss)
 		}
-	}
-	if ps.Platform != nil {
-		for _, ss := range ps.Platform {
+	for _, ss := range ps.Platform {
 			sort.Strings(ss)
 		}
-	}
 	return ps
 }
 

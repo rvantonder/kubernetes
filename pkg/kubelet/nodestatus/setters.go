@@ -323,14 +323,12 @@ func MachineInfo(nodeName string,
 			node.Status.Allocatable[k] = value
 		}
 
-		if devicePluginAllocatable != nil {
-			for k, v := range devicePluginAllocatable {
+		for k, v := range devicePluginAllocatable {
 				if old, ok := node.Status.Allocatable[k]; !ok || old.Value() != v.Value() {
 					glog.V(2).Infof("Update allocatable for %s to %d", k, v.Value())
 				}
 				node.Status.Allocatable[k] = v
 			}
-		}
 		// for every huge page reservation, we need to remove it from allocatable memory
 		for k, v := range node.Status.Capacity {
 			if v1helper.IsHugePageResourceName(k) {

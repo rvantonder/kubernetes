@@ -67,13 +67,11 @@ func findLanguage(root string, getLanguageFn func() string) string {
 	langStr := getLanguageFn()
 
 	translations := knownTranslations[root]
-	if translations != nil {
-		for ix := range translations {
+	for ix := range translations {
 			if translations[ix] == langStr {
 				return langStr
 			}
 		}
-	}
 	glog.V(3).Infof("Couldn't find translations for %s, using default", langStr)
 	return "default"
 }

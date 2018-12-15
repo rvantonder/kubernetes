@@ -716,14 +716,12 @@ func (spt *ServicePrincipalToken) EnsureFreshWithContext(ctx context.Context) er
 
 // InvokeRefreshCallbacks calls any TokenRefreshCallbacks that were added to the SPT during initialization
 func (spt *ServicePrincipalToken) InvokeRefreshCallbacks(token Token) error {
-	if spt.refreshCallbacks != nil {
-		for _, callback := range spt.refreshCallbacks {
+	for _, callback := range spt.refreshCallbacks {
 			err := callback(spt.inner.Token)
 			if err != nil {
 				return fmt.Errorf("adal: TokenRefreshCallback handler failed. Error = '%v'", err)
 			}
 		}
-	}
 	return nil
 }
 
